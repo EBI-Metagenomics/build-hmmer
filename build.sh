@@ -8,6 +8,6 @@ cd $DIR
 ./configure
 make
 cd ..
-cp $DIR/src/hmmsearch binhouse/hmmsearch_manylinux2010_x86_64
+cp $DIR/src/hmmsearch binhouse/hmmsearch
 rm -rf $DIR
 ls
