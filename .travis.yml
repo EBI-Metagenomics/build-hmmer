@@ -10,7 +10,8 @@ matrix:
         - docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $IMAGE ./build.sh
         - mv binhouse/hmmsearch binhouse/hmmsearch_manylinux2010_x86_64
     - os: osx
-      language: shell
+      language: c
+      compiler: clang
       env:
         - MACOSX_DEPLOYMENT_TARGET=10.9
         - ARCHFLAGS="-arch x86_64"
