@@ -1,0 +1,18 @@
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      services:
+        - docker
+install:
+  - pwd
+script:
+  - mkdir binhouse
+  - docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i "/bin/bash build_on_linux.sh"
+  - ls binhouse
+notifications:
+  email:
+    recipients:
+      - danilo.horta@pm.me
+    on_success: never
+    on_failure: always
