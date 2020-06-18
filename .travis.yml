@@ -1,27 +1,38 @@
 matrix:
   include:
-    - os: linux
-      sudo: required
-      services:
-        - docker
-      script:
-        - mkdir binhouse
-        - IMAGE=quay.io/pypa/manylinux2010_x86_64
-        - docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $IMAGE ./build.sh
-        - mv binhouse/hmmsearch binhouse/hmmsearch_manylinux2010_x86_64
-    - os: osx
-      language: c
-      compiler: clang
-      env:
-        - MACOSX_DEPLOYMENT_TARGET=10.9
-        - ARCHFLAGS="-arch x86_64"
-      script:
-        - mkdir binhouse
-        - ./build.sh
-        - mv binhouse/hmmsearch binhouse/hmmsearch_macosx_10_9_x86_64
+  - os: linux
+    sudo: required
+    services:
+    - docker
+    script:
+    - mkdir binhouse
+    - IMAGE=quay.io/pypa/manylinux2010_x86_64
+    - docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $IMAGE ./build.sh
+    - mv binhouse/hmmsearch binhouse/hmmsearch_manylinux2010_x86_64
+  - os: osx
+    language: c
+    compiler: clang
+    env:
+    - MACOSX_DEPLOYMENT_TARGET=10.9
+    - ARCHFLAGS="-arch x86_64"
+    script:
+    - mkdir binhouse
+    - "./build.sh"
+    - mv binhouse/hmmsearch binhouse/hmmsearch_macosx_10_9_x86_64
 notifications:
   email:
     recipients:
-      - danilo.horta@pm.me
+    - danilo.horta@pm.me
     on_success: never
     on_failure: always
+deploy:
+  provider: s3
+  access_key_id: $access_key_id
+  secret_access_key: $secret_access_key
+  bucket: iseq-py
+  local-dir: binhouse
+  upload-dir: binhouse
+  acl: public_read
+  on:
+    repo: horta/build-hmmer
+  skip_cleanup: true
