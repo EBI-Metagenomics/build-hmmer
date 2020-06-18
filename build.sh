@@ -9,5 +9,6 @@ cd $DIR
 make
 cd ..
 cp $DIR/src/hmmsearch binhouse/hmmsearch
+chmod +x binhouse/hmmsearch
 rm -rf $DIR
 ls
