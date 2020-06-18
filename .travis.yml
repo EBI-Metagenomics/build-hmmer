@@ -16,7 +16,7 @@ matrix:
         - ARCHFLAGS="-arch x86_64"
       script:
         - mkdir binhouse
-        - python3 -m pip install --upgrade pip setuptools
+        - ./build.sh
         - mv binhouse/hmmsearch binhouse/hmmsearch_macosx_10_9_x86_64
 notifications:
   email:
