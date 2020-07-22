@@ -11,5 +11,6 @@ cd ..
 cp $DIR/src/hmmsearch binhouse/hmmsearch
 cp $DIR/src/hmmscan binhouse/hmmscan
 cp $DIR/src/hmmpress binhouse/hmmpress
+cp $DIR/src/hmmfetch binhouse/hmmfetch
 rm -rf $DIR
 ls
