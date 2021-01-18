@@ -13,6 +13,7 @@ matrix:
     - mv binhouse/hmmpress binhouse/hmmpress_manylinux2010_x86_64
     - mv binhouse/hmmfetch binhouse/hmmfetch_manylinux2010_x86_64
     - mv binhouse/hmmemit binhouse/hmmemit_manylinux2010_x86_64
+    - mv binhouse/phmmer binhouse/phmmer_manylinux2010_x86_64
   - os: osx
     language: c
     compiler: clang
@@ -27,6 +28,7 @@ matrix:
     - mv binhouse/hmmpress binhouse/hmmpress_macosx_10_9_x86_64
     - mv binhouse/hmmfetch binhouse/hmmfetch_macosx_10_9_x86_64
     - mv binhouse/hmmemit binhouse/hmmemit_macosx_10_9_x86_64
+    - mv binhouse/phmmer binhouse/phmmer_macosx_10_9_x86_64
 notifications:
   email:
     recipients:
