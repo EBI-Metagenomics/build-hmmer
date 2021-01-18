@@ -29,7 +29,7 @@ jobs:
         uses: reggionick/s3-deploy@v3
         with:
           folder: binhouse
-          bucket: iseq-py
+          bucket: iseq-py/binhouse
           bucket-region: eu-west-2
           delete-removed: false
           no-cache: true
@@ -60,7 +60,7 @@ jobs:
         uses: reggionick/s3-deploy@v3
         with:
           folder: binhouse
-          bucket: iseq-py
+          bucket: iseq-py/binhouse
           bucket-region: eu-west-2
           delete-removed: false
           no-cache: true
