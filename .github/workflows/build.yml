@@ -47,7 +47,6 @@ jobs:
         run: |
           mkdir binhouse
           ./build.sh
-          docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $LINUX ./build.sh
           mv binhouse/hmmsearch binhouse/hmmsearch_macosx_10_9_x86_64
           mv binhouse/hmmscan binhouse/hmmscan_macosx_10_9_x86_64
           mv binhouse/hmmpress binhouse/hmmpress_macosx_10_9_x86_64
