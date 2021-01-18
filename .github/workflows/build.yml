@@ -3,11 +3,14 @@ name: Build
 on: [push]
 
 env:
-  IMAGE: quay.io/pypa/manylinux2010_x86_64
+  LINUX: quay.io/pypa/manylinux2010_x86_64
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -15,10 +18,18 @@ jobs:
       - name: Build and move
         run: |
           mkdir binhouse
-          docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $IMAGE ./build.sh
+          docker run -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) -i $LINUX ./build.sh
           mv binhouse/hmmsearch binhouse/hmmsearch_manylinux2010_x86_64
           mv binhouse/hmmscan binhouse/hmmscan_manylinux2010_x86_64
           mv binhouse/hmmpress binhouse/hmmpress_manylinux2010_x86_64
           mv binhouse/hmmfetch binhouse/hmmfetch_manylinux2010_x86_64
           mv binhouse/hmmemit binhouse/hmmemit_manylinux2010_x86_64
           mv binhouse/phmmer binhouse/phmmer_manylinux2010_x86_64
+
+      - name: Deploy
+        uses: reggionick/s3-deploy@v3
+        with:
+          folder: binhouse
+          bucket: iseq-py
+          bucket-region: eu-west-2
+          delete-removed: false
