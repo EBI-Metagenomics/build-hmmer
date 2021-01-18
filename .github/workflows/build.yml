@@ -32,6 +32,8 @@ jobs:
           bucket: iseq-py
           bucket-region: eu-west-2
           delete-removed: false
+          no-cache: true
+          private: true
 
   build_on_macos:
     runs-on: macos-latest
@@ -61,3 +63,5 @@ jobs:
           bucket: iseq-py
           bucket-region: eu-west-2
           delete-removed: false
+          no-cache: true
+          private: true
